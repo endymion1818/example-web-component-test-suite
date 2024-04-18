@@ -1,0 +1,78 @@
+<!--         Used for local testing           -->
+<!--               and Cypress                -->
+<!-- Do not change without updating E2E tests -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embed Examples</title>
+  <script type="module" src="./src/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const mediaPlayer = document.querySelector('media-player#my-player');
+      
+      /*
+        * The following code is used to demonstrate how to interact with the player
+      */
+      const playPauseButton = document.getElementById("embed-control-playpause")
+      playPauseButton.addEventListener("click", function () {
+
+        const isPaused = mediaPlayer.shadowRoot.querySelector('media-controller').hasAttribute('mediapaused');
+
+        if (isPaused) {
+          mediaPlayer.dispatchEvent(new CustomEvent('play'));
+        }
+        if (!isPaused) {
+          mediaPlayer.dispatchEvent(new CustomEvent('pause'));
+        }
+      });
+      const skipButton = document.getElementById("embed-control-skip")
+      skipButton.addEventListener("click", function () {
+        const timestamp = skipButton.getAttribute('data-timestamp');
+        mediaPlayer.dispatchEvent(new CustomEvent('seek', { detail: { timestamp: timestamp } }));
+      });
+      const muteButton = document.getElementById("embed-control-mute");
+      muteButton.addEventListener("click", function () {
+        const isMuted = mediaPlayer.shadowRoot.querySelector('media-controller').hasAttribute('mediamuted');
+        mediaPlayer.dispatchEvent(new CustomEvent('mute'));
+      });
+
+      /*
+        * This code demonstrates the events that can be listened to from the player.
+      */
+     const mediaElementEvents = ['abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error', 'loadeddata', 'loadedmetadata', 'loadstart', 'pause', 'play', 'playing', 'progress', 'ratechange', 'seeked', 'seeking', 'stalled', 'suspend', 'timeupdate', 'volumechange', 'waiting'];
+
+      mediaElementEvents.forEach(event => {
+        mediaPlayer.addEventListener(event, (event) => {
+          console.log(event.type);
+
+          console.log('Current time:', mediaPlayer.getAttribute('mediatime'));
+        });
+      });
+    });
+  </script>
+  <style>
+    fieldset {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body style="height:9900px">
+  <h2>Video player:</h2>
+  <fieldset>
+    <legend>Controls</legend>
+    <button id="embed-control-playpause">Play / Pause</button>
+    <button id="embed-control-skip" data-timestamp="200">Skip to 200 seconds</button>
+    <button id="embed-control-mute">Mute / Unmute</button>
+  </fieldset>
+  <media-player 
+    videourl="https://stream.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/high.mp4"
+    posterurl="https://image.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/thumbnail.jpg"
+    id="my-player"
+  >
+  </media-player>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{  
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "plugin:eslint-plugin-jsdoc/recommended",
+    "plugin:storybook/recommended",
+  ],
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "ignorePatterns": ["node_modules/", "dist/", "types.d.ts",  "___TESTS___/", "___MOCKS____/"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "skipLibCheck": true,
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "no-useless-constructor": "off",
+    "eqeqeq": "off",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "info"
+        ]
+      }
+    ]
+  }
+}
