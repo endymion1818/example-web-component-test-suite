@@ -1,10 +1,17 @@
 # Example Web Component test suite
 
+**LOOKING FOR CONTRIBUTIONS**
+
+I would really value your input if you can help me improve this test suite. Please see below for a brief explanation of what I'm after. 
+
+
 This is a work-in-progress test suite example for [web components](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components).
 
 It arose because I wanted to have the same expectations with testing as I do with any other frontend stack as I do when building Web Components.
 
 I also found that the existing tutorials and libraries for this purpose use frameworks like Lit. Whilst I see the value in those frameworks, personally I just ditched my abstractions and I don't want to adopt another. I want to build with native web tools.
+
+I've used [media-chrome](https://www.media-chrome.org/) as a basis for this test suite because it's a non-trivial Web Component. It's also a really well thought out project which I enjoy using.
 
 This repo contains my tools of choice for the following:
 
@@ -35,6 +42,8 @@ These limitations are listed below:
 ## Storybook
 
 Storybook has the most support for web components.
+
+[View playground](https://example-web-components-test-suite.netlify.app/storybook)
 
 ### What's possible:
 
@@ -95,7 +104,7 @@ Storybook has the most support for web components.
 
 Works fine with web components.
 
-**Spotted a mistake?**
+# Spotted a mistake?
 
 I'm pretty new to this web components thing, and would love it if someone could educate me where I've gone wrong with each of these.
 
