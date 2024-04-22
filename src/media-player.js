@@ -7,8 +7,27 @@ import 'media-chrome';
 class MediaPlayer extends HTMLElement {
   constructor() {
     super()
+    /**
+     * @type {string | null} videourl - required video url
+     */
     this.videourl = this.getAttribute('videourl');
+    /**
+     * @type {string | null } [posterurl] - optional poster url
+     */
     this.posterurl = this.getAttribute('posterurl');
+    
+    // Above: Static analysis of the attributes works
+    // Below: Static analysis of other properties is not recognised even when specifying them in the JSDoc
+
+    /**
+     * @type {Partial<UserOptions>}
+     */
+    this.getAttributeNames().forEach((attr) => {
+      this[attr] = this.getAttribute(attr);
+    });
+
+    // eg. uncomment the next line
+    // this.something
 
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

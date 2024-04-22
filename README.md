@@ -79,12 +79,11 @@ Storybook has the most support for web components.
 2. Alter Rendered component based on arguments
 3. Fire events to the component
 4. Observe events bubbled from the component
+5. Checking whether an item in the internal ui has rendered as a result of arguments passed
 
 ### What's not possible:
 
-1. Checking whether an item in the internal ui has rendered as a result of arguments passed
-2. Observing events inside the component
-
+2. [not checked] Observing events inside the component
 
 ## Cypress
 
