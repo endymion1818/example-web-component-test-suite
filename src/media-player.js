@@ -7,16 +7,8 @@ import 'media-chrome';
 class MediaPlayer extends HTMLElement {
   constructor() {
     super()
-    // it used to go like this
     this.videourl = this.getAttribute('videourl');
     this.posterurl = this.getAttribute('posterurl');
-    // but now it goes a little something like this
-    /**
-     * @type {Partial<UserOptions>}
-     */
-    this.getAttributeNames().forEach((attr) => {
-      this[attr] = this.getAttribute(attr);
-    });
 
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -105,7 +97,7 @@ class MediaPlayer extends HTMLElement {
       console.error('there doesnt appear to be a video at that location');
       return;
     }
-    // @ts-ignore pass user options without having to list them all again
+
     const css = `
       :host {
         display: block;
@@ -116,7 +108,6 @@ class MediaPlayer extends HTMLElement {
       }
     `;
 
-    // @ts-ignore pass user options without having to list them all again
     const html = `
     <media-controller>
       <video

@@ -8,4 +8,13 @@ describe("template spec", () => {
   it("should render", () => {
     cy.get("media-player#my-player").should("exist");
   });
+  it("should play", () => {
+    cy.get("media-player#my-player").
+      shadow().
+      find('media-control-bar')
+      .find("media-play-button").
+      click();
+    cy.get("media-player#my-player")
+      .should("have.attr", "mediaplaying", "true");
+  });
 });

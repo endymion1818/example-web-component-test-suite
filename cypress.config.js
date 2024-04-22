@@ -11,6 +11,7 @@ const config = defineConfig({
     setupNodeEvents() {
       // implement node event listeners here
     },
+    includeShadowDom: true,
   },
 });
 export default config;
